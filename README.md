@@ -10,9 +10,10 @@ Take-home project for building a property viewing application with Rails API bac
 - [x] Create Property model (name, address, year_built, website_url)
   - [x] Bonus: Added DB seeds for 10 properties.
 - [ ] Implement API endpoint: List all properties
+  - Our route at http://localhost:3000/properties is working fine... do we need to add additional API functionality?
 - [ ] Implement API endpoint: View single property
+  - Our route at http://localhost:3000/properties/10 is working fine... do we need to add additional API functionality?
 - [ ] Configure CORS for frontend communication
-- [ ] Seed database with sample properties
 
 ### Frontend Tasks
 - [ ] Initialize React application with Vite
@@ -24,17 +25,27 @@ Take-home project for building a property viewing application with Rails API bac
 - [ ] Optional: Create detail view for individual properties
 
 ### Bonus Tasks (If Time Permits)
-- [ ] Backend: Create Units model (unit_name, bedroom_count, bathroom_count, unit_size)
-- [ ] Backend: Add relationship between Property and Units
+- [x] Backend: Create Units model (unit_name, bedroom_count, bathroom_count, unit_size)
+- [x] Backend: Add relationship between Property and Units
+  - [x] Bonus: Added DB seeds for 4-24 units per property.
 - [ ] Backend: Update API endpoints to include units
+    - Our route at http://localhost:3000/units is working fine... do we need to add additional API functionality?
 - [ ] Frontend: Display units associated with properties
 
 ## Running the Applications
 
 ### Backend (Rails API)
 ```bash
-cd backend
-# Commands will be added after setup
+# Initial setup
+  cd backend
+  bundle install
+  rails db:create
+  rails db:migrate
+  rails db:seed
+
+  # Run the server (on port 3000)
+  bin/dev
+
 ```
 
 ### Frontend (React + Vite)

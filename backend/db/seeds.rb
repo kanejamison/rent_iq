@@ -11,8 +11,8 @@
 
 # Explicitly load seed files in order
   seed_files = [
-    'properties'
-    # 'units',
+    'properties',
+    'units'
     # etc.
   ]
 
