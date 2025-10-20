@@ -24,11 +24,9 @@ import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import PropertyList from './PropertyList'
 import PropertyDetail from './PropertyDetail'
 
-const navigation = [
-  { name: 'Properties', href: '#', icon: HomeIcon, current: true }
-]
+
 const userNavigation = [
-  { name: 'Your profile', href: '#' },
+  { name: '👋 Welcome!', href: '#' },
   { name: 'Sign out', href: '#' },
 ]
 
@@ -39,6 +37,10 @@ function classNames(...classes) {
 export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [selectedPropertyId, setSelectedPropertyId] = useState(null)
+
+  const navigation = [
+    { name: 'Properties', onClick: () => setSelectedPropertyId(null), icon: HomeIcon, current: true }
+  ]
 
   return (
     <>
@@ -82,13 +84,13 @@ export default function Example() {
                       <ul role="list" className="-mx-2 space-y-1">
                         {navigation.map((item) => (
                           <li key={item.name}>
-                            <a
-                              href={item.href}
+                            <button
+                              onClick={item.onClick}
                               className={classNames(
                                 item.current
                                   ? 'bg-indigo-950/25 text-white'
                                   : 'text-indigo-100 hover:bg-indigo-950/25 hover:text-white',
-                                'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
+                                'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold w-full',
                               )}
                             >
                               <item.icon
@@ -99,7 +101,7 @@ export default function Example() {
                                 )}
                               />
                               {item.name}
-                            </a>
+                            </button>
                           </li>
                         ))}
                       </ul>
@@ -124,13 +126,13 @@ export default function Example() {
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <a
-                          href={item.href}
+                        <button
+                          onClick={item.onClick}
                           className={classNames(
                             item.current
                               ? 'bg-indigo-950/25 text-white'
                               : 'text-indigo-100 hover:bg-indigo-950/25 hover:text-white',
-                            'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
+                            'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold w-full',
                           )}
                         >
                           <item.icon
@@ -141,7 +143,7 @@ export default function Example() {
                             )}
                           />
                           {item.name}
-                        </a>
+                        </button>
                       </li>
                     ))}
                   </ul>
