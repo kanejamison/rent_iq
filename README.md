@@ -9,11 +9,11 @@ Take-home project for building a property viewing application with Rails API bac
 - [x] Configure sqlite database
 - [x] Create Property model (name, address, year_built, website_url)
   - [x] Bonus: Added DB seeds for 10 properties.
-- [ ] Implement API endpoint: List all properties
+- [?] Implement API endpoint: List all properties
   - Our route at http://localhost:3000/properties is working fine... do we need to add additional API functionality?
-- [ ] Implement API endpoint: View single property
+- [?] Implement API endpoint: View single property
   - Our route at http://localhost:3000/properties/10 is working fine... do we need to add additional API functionality?
-- [ ] Configure CORS for frontend communication
+- [x] Configure CORS for frontend communication
 
 ### Frontend Tasks
 - [ ] Initialize React application with Vite
@@ -28,8 +28,8 @@ Take-home project for building a property viewing application with Rails API bac
 - [x] Backend: Create Units model (unit_name, bedroom_count, bathroom_count, unit_size)
 - [x] Backend: Add relationship between Property and Units
   - [x] Bonus: Added DB seeds for 4-24 units per property.
-- [ ] Backend: Update API endpoints to include units
-    - Our route at http://localhost:3000/units is working fine... do we need to add additional API functionality?
+- [?] Backend: Update API endpoints to include units
+    - Can be fetched via http://localhost:3000/properties/8 or http://localhost:3000/properties/8/units
 - [ ] Frontend: Display units associated with properties
 
 ## Running the Applications
@@ -45,7 +45,6 @@ Take-home project for building a property viewing application with Rails API bac
 
   # Run the server (on port 3000)
   bin/dev
-
 ```
 
 ### Frontend (React + Vite)
@@ -57,13 +56,31 @@ cd frontend
 ## Notes for Interviewing Team
 
 ### Architecture Decisions
--
+- Using standard Rails scaffolds for controllers returning JSON responses.
+  - rails generate scaffold Property name:string address:text year_built:integer website_url:string
+  - rails generate scaffold Unit unit_name:string bedroom_count:integer bathroom_count:decimal unit_size:integer property:references
 
 ### Styling Choices
 -
 
 ### API Design
--
+- We're able to load JSON responses fine directly from Rails scaffolding, including full CRUD examples below tested on localhost
+- Do we need a more robust API design for this project?
+
+**CREATE**
+```
+curl -X POST http://localhost:3000/properties -H "Content-Type: application/json" -d '{"property": {"name": "Test Property", "address": "123 Test Street, Test City, TC 12345", "year_built": 2023, "website_url": "https://testproperty.example.com"}}'
+```
+
+**UPDATE - Update property 11**
+```
+curl -X PATCH http://localhost:3000/properties/11 -H "Content-Type: application/json" -d '{"property": {"name": "Updated Test Property"}}'
+```
+
+**DELETE - Delete property 11**
+```
+curl -X DELETE http://localhost:3000/properties/11
+```
 
 ### Trade-offs and Future Improvements
 - properties
