@@ -10,7 +10,7 @@ class PropertiesController < ApplicationController
 
   # GET /properties/1
   def show
-    render json: @property
+    render json: @property, include: :units
   end
 
   # POST /properties
