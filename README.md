@@ -16,12 +16,12 @@ Take-home project for building a property viewing application with Rails API bac
 - [x] Configure CORS for frontend communication
 
 ### Frontend Tasks
-- [ ] Initialize React application with Vite
-- [ ] Set up Tailwind CSS
-- [ ] Install API call dependencies (axios/fetch)
-- [ ] Create properties list view
-- [ ] Display property details (name, address, year built, website link)
-- [ ] Configure API connection to localhost:3000
+- [x] Initialize React application with Vite
+- [x] Set up Tailwind CSS
+- [x] Install API call dependencies (axios/fetch)
+- [x] Create properties list view
+- [x] Display property details (name, address, year built, website link)
+- [x] Configure API connection to localhost:3000
 - [ ] Optional: Create detail view for individual properties
 
 ### Bonus Tasks (If Time Permits)
@@ -61,7 +61,8 @@ cd frontend
   - rails generate scaffold Unit unit_name:string bedroom_count:integer bathroom_count:decimal unit_size:integer property:references
 
 ### Styling Choices
--
+- Using default TailwindUI blocks and app layout for simplicity
+- I'm committing directly to main here for speed. Don't judge me too harshly - I typically prefer to work in small isolated PRs with explanations of what's
 
 ### API Design
 - We're able to load JSON responses fine directly from Rails scaffolding, including full CRUD examples below tested on localhost
