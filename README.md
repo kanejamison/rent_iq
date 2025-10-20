@@ -5,9 +5,10 @@ Take-home project for building a property viewing application with Rails API bac
 ## Project Status
 
 ### Backend Tasks
-- [ ] Initialize Rails API-only application
-- [ ] Configure sqlite database
-- [ ] Create Property model (name, address, year_built, website_url)
+- [x] Initialize Rails API-only application
+- [x] Configure sqlite database
+- [x] Create Property model (name, address, year_built, website_url)
+  - [x] Bonus: Added DB seeds for 10 properties.
 - [ ] Implement API endpoint: List all properties
 - [ ] Implement API endpoint: View single property
 - [ ] Configure CORS for frontend communication
@@ -54,10 +55,19 @@ cd frontend
 -
 
 ### Trade-offs and Future Improvements
--
+- properties
+  - single address line is good enough for this project but I'd probably implement a more robust address line 1, etc for production.
+- units
 
 ### Known Issues or Limitations
 -
+
+### AI Usage
+- All code was written by me. Claude was pulled in to generate the following items that were above and beyond specs:
+- App:
+  - Building out supporting files like Readme.
+- Backend:
+  - Generate db seeds
 
 ---
 
