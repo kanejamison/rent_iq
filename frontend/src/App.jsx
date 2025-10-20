@@ -21,6 +21,8 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import PropertyList from './PropertyList'
+import PropertyDetail from './PropertyDetail'
 
 const navigation = [
   { name: 'Properties', href: '#', icon: HomeIcon, current: true }
@@ -36,6 +38,7 @@ function classNames(...classes) {
 
 export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [selectedPropertyId, setSelectedPropertyId] = useState(null)
 
   return (
     <>
@@ -113,7 +116,7 @@ export default function Example() {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="relative flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-800 px-6 pb-4 after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:w-px after:bg-white/10">
             <div className="flex h-16 shrink-0 items-center text-white">
-              <BuildingOffice2Icon className="h-8 w-auto text-white mr-2" /> <span class="font-semibold">Rent_IQ</span>
+              <BuildingOffice2Icon className="h-8 w-auto text-white mr-2" /> <span className="font-semibold">Rent_IQ</span>
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -202,7 +205,18 @@ export default function Example() {
           </div>
 
           <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">{/* Your content */}</div>
+            <div className="px-4 sm:px-6 lg:px-8">
+              {selectedPropertyId ? (
+                <PropertyDetail
+                  propertyId={selectedPropertyId}
+                  onBack={() => setSelectedPropertyId(null)}
+                />
+              ) : (
+                <PropertyList
+                  onSelect={(id) => setSelectedPropertyId(id)}
+                />
+              )}
+            </div>
           </main>
         </div>
       </div>
