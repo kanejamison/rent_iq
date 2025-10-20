@@ -1,9 +1,12 @@
 class UnitsController < ApplicationController
+  before_action :set_property, only: [:index]
   before_action :set_unit, only: %i[ show update destroy ]
 
   # GET /units
+  # OR
+  # GET /properties/:property_id/units
   def index
-    @units = Unit.all
+    @units = @property ? @property.units : Unit.all
 
     render json: @units
   end
@@ -39,6 +42,11 @@ class UnitsController < ApplicationController
   end
 
   private
+    # set property ID when index is nested in properties route.
+    def set_property
+      @property = Property.find(params[:property_id]) if params[:property_id]
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_unit
       @unit = Unit.find(params.expect(:id))
