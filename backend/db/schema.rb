@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_20_201602) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_20_202840) do
   create_table "properties", force: :cascade do |t|
     t.string "name"
     t.text "address"
@@ -19,4 +19,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_201602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "units", force: :cascade do |t|
+    t.string "unit_name"
+    t.integer "bedroom_count"
+    t.decimal "bathroom_count"
+    t.integer "unit_size"
+    t.integer "property_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_units_on_property_id"
+  end
+
+  add_foreign_key "units", "properties"
 end

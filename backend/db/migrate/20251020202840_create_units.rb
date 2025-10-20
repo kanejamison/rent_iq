@@ -1,0 +1,13 @@
+class CreateUnits < ActiveRecord::Migration[8.0]
+  def change
+    create_table :units do |t|
+      t.string :unit_name
+      t.integer :bedroom_count
+      t.decimal :bathroom_count
+      t.integer :unit_size
+      t.references :property, null: false, foreign_key: true
+
+      t.timestamps
+    end
+  end
+end
