@@ -21,7 +21,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_202840) do
   end
 
   create_table "units", force: :cascade do |t|
-    t.string "unit_name"
+    t.string "name"
     t.integer "bedroom_count"
     t.decimal "bathroom_count"
     t.integer "unit_size"

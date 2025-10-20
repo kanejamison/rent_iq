@@ -1,7 +1,7 @@
 class CreateUnits < ActiveRecord::Migration[8.0]
   def change
     create_table :units do |t|
-      t.string :unit_name
+      t.string :name
       t.integer :bedroom_count
       t.decimal :bathroom_count
       t.integer :unit_size

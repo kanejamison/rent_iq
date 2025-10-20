@@ -43,7 +43,7 @@
 
       Unit.find_or_create_by(
         property: property,
-        unit_name: "Unit #{unit_number}"
+        name: "Unit #{unit_number}"
       ) do |unit|
         unit.bedroom_count = bedroom_count
         unit.bathroom_count = bathroom_count
