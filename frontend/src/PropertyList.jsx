@@ -7,6 +7,9 @@ export default function PropertyList({ onSelect }) {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
+    // Update URL when this component loads
+    window.history.pushState({}, '', '/')
+
     fetchProperties()
       .then(response => setProperties(response.data))
       .catch(error => console.error('Failed to load properties:', error))

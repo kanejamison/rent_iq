@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogBackdrop,
@@ -36,7 +36,25 @@ function classNames(...classes) {
 
 export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [selectedPropertyId, setSelectedPropertyId] = useState(null)
+
+  // Helper to read property ID from URL
+    const getPropertyIdFromUrl = () => {
+      const match = window.location.pathname.match(/\/properties\/(\d+)/)
+      return match ? parseInt(match[1]) : null
+    }
+
+    // Initialize from URL (supports direct navigation)
+    const [selectedPropertyId, setSelectedPropertyId] = useState(getPropertyIdFromUrl)
+
+    // Listen for browser back/forward buttons
+    useEffect(() => {
+      const handlePopState = () => {
+        setSelectedPropertyId(getPropertyIdFromUrl())
+      }
+
+      window.addEventListener('popstate', handlePopState)
+      return () => window.removeEventListener('popstate', handlePopState)
+    }, [])
 
   const navigation = [
     { name: 'Properties', onClick: () => setSelectedPropertyId(null), icon: HomeIcon, current: true }

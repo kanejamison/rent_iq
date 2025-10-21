@@ -7,6 +7,9 @@ export default function PropertyDetail({ propertyId, onBack }) {
   const [property, setProperty] = useState([]);
 
   useEffect(() => {
+    // Update URL when this component loads
+    window.history.pushState({}, '', `/properties/${propertyId}`)
+
     fetchProperty(propertyId)
       .then(response => setProperty(response.data))
       .catch(error => console.error('Failed to load property:', error))
