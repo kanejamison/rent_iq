@@ -12,7 +12,7 @@ class UnitsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create unit" do
     assert_difference("Unit.count") do
-      post units_url, params: { unit: { bathroom_count: @unit.bathroom_count, bedroom_count: @unit.bedroom_count, property_id: @unit.property_id, unit_name: @unit.unit_name, unit_size: @unit.unit_size } }, as: :json
+      post units_url, params: { unit: { bathroom_count: @unit.bathroom_count, bedroom_count: @unit.bedroom_count, property_id: @unit.property_id, name: @unit.name, unit_size: @unit.unit_size } }, as: :json
     end
 
     assert_response :created
@@ -24,7 +24,7 @@ class UnitsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update unit" do
-    patch unit_url(@unit), params: { unit: { bathroom_count: @unit.bathroom_count, bedroom_count: @unit.bedroom_count, property_id: @unit.property_id, unit_name: @unit.unit_name, unit_size: @unit.unit_size } }, as: :json
+    patch unit_url(@unit), params: { unit: { bathroom_count: @unit.bathroom_count, bedroom_count: @unit.bedroom_count, property_id: @unit.property_id, name: @unit.name, unit_size: @unit.unit_size } }, as: :json
     assert_response :success
   end
 
