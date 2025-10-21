@@ -17,22 +17,24 @@ export default function PropertyList({ onSelect }) {
       {properties.map((property) => (
         <li key={property.id} className="shadow-sm overflow-hidden rounded-lg outline -outline-offset-1 outline-white/10">
           <div className="flex items-center gap-x-4 border-b border-white/10 bg-gray-50 p-6">
-            <img
-              alt={property.name}
-              src={
-                property.imageUrl || 'https://picsum.photos/id/57/48/48'
-              }
-              className="size-12 flex-none rounded-lg bg-gray-800 object-cover ring-1 ring-white/10"
-            />
-            <div className="flex flex-col">
-              <div className="text-base/6 font-medium text-gray-800 hover:underline">
-                <button onClick={(e) => {
-                            onSelect(property.id)
-                          }}>
-                  {property.name}
-                </button>
+            <button onClick={(e) => {
+                        onSelect(property.id)
+                      }} className="group contents cursor-pointer">
+              <img
+                alt={property.name}
+                src={
+                  property.imageUrl || 'https://picsum.photos/id/57/48/48'
+                }
+                className="size-12 flex-none rounded-lg bg-gray-800 object-cover ring-1 ring-white/10"
+              />
+              <div className="flex flex-col">
+                <div className="text-base/6 font-medium text-gray-800 group-hover:underline">
+
+                    {property.name}
+
+                </div>
               </div>
-            </div>
+            </button>
             <Menu as="div" className="relative ml-auto">
               <MenuButton className="relative block text-gray-400 hover:text-gray-800">
                 <span className="absolute -inset-2.5" />
