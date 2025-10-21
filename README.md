@@ -133,21 +133,27 @@ npm run dev
 
 ### Backend Choices
 - Using standard Rails scaffolds for controllers returning JSON responses.
-  - rails generate scaffold Property name:string address:text year_built:integer website_url:string
-  - rails generate scaffold Unit unit_name:string bedroom_count:integer bathroom_count:decimal unit_size:integer property:references
-- I'm able to load JSON responses fine directly from Rails default scaffolding, including full CRUD examples below tested on localhost
+  - `rails generate scaffold Property name:string address:text year_built:integer website_url:string`
+  - `rails generate scaffold Unit unit_name:string bedroom_count:integer bathroom_count:decimal unit_size:integer property:references`
+- I'm able to load JSON responses fine directly from Rails default scaffolding, including full CRUD examples below tested on localhost, so pausing here.
   - Do we need a more robust API design for this project?
+  - I assume we don't need authentication or authorization for this project.
+  - I assume we're ok exposing all database columns publicly and don't need to filter currently.
 
 ### Frontend Choices
-- I'm using default Tailwind UI blocks and app layout for simplicity
-  - I've tweaked some of the default Tailwind styles to taste but there's plenty of room for UI improvement, better link wrapping on cards, etc.
-- I implemented a very raw URL handling to set URLs and accept them if user returns back. Definitely not meant to be a robust implementation or full routing system.
+- I'm using Tailwind UI blocks and app layouts for simplicity.
+  - I've tweaked some of the default Tailwind styles for layout and personal preferences but there's plenty of room for UI improvement, and thinks like better link wrapping on cards, etc. Trying to stay within scope and not go overboard.
+- I implemented a very raw URL handling to set URLs with pushState and accept them in App.jsx if user enters through a property URL instead of homepage. Definitely not meant to be a robust implementation or full routing system.
 
 ### Repo Choices
-- I'm committing directly to main here for speed. Don't judge me too harshly =).
-  - I typically prefer to work in small reviewable PRs whenever possible with good PR notes. I use descriptive commit names but I don't like to include a lot in commit messages since it gets lost in the PR itself.
+- I have committed everything directly to main for speed. Don't judge me too harshly =).
+  - I typically prefer to work in small reviewable PRs whenever possible with good PR notes.
+  - I use descriptive commit names but I don't like to include a lot in commit messages since it gets lost in the PR itself.
+  - I like running everything through PRs even on personal projects just to get full CI feedback before squash and merge.
 
-### API CRUD Testing
+### API CRUD Reference
+All of the following were QA'd and working as expected.
+
 **CREATE**
 ```
 curl -X POST http://localhost:3000/properties -H "Content-Type: application/json" -d '{"property": {"name": "Test Property", "address": "123 Test Street, Test City, TC 12345", "year_built": 2023, "website_url": "https://testproperty.example.com"}}'
@@ -166,13 +172,10 @@ curl -X DELETE http://localhost:3000/properties/11
 ### Trade-offs and Future Improvements
 - properties
   - single address line is good enough for this project but I'd probably implement a more robust address line 1, etc for production.
-- units
-
-### Known Issues or Limitations
--
 
 ### AI Usage
-- All code was written by me. Claude was pulled in to generate the following items that were above and beyond specs:
+- All code was written by me (or pasted in the case of 2 Tailwind UI components).
+- Claude was pulled in to generate the following items that were beyond the core specs:
 - App:
   - Building out supporting files like Readme.
 - Backend:
