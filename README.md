@@ -143,6 +143,7 @@ npm run dev
 ### Frontend Choices
 - I'm using Tailwind UI blocks and app layouts for simplicity.
   - I've tweaked some of the default Tailwind styles for layout and personal preferences but there's plenty of room for UI improvement, and thinks like better link wrapping on cards, etc. Trying to stay within scope and not go overboard.
+  - App.jsx is way too heavy and should be refactored into separate layout and sidebar components at a minimum.
 - I implemented a very raw URL handling to set URLs with pushState and accept them in App.jsx if user enters through a property URL instead of homepage. Definitely not meant to be a robust implementation or full routing system.
 
 ### Repo Choices
@@ -176,10 +177,12 @@ curl -X DELETE http://localhost:3000/properties/11
 ### AI Usage
 - All code was written by me (or pasted in the case of 2 Tailwind UI components).
 - Claude was pulled in to generate the following items that were beyond the core specs:
-- App:
-  - Building out supporting files like Readme.
-- Backend:
-  - Generate db seeds
+  - Repo:
+    - Building out supporting files like Readme
+  - Backend:
+    - Generate db seeds
+  - Frontend:
+    - Questions about general React patterns I have not previously implemented, eg service object conventions, options for routing / getPropertyIdFromUrl, explanations on a few TailwindUI patterns.
 
 ---
 
