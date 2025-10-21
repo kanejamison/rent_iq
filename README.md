@@ -2,6 +2,77 @@
 
 Take-home project for building a property viewing application with Rails API backend and React frontend.
 
+## App Preview
+### Backend Preview
+**http://localhost:3000/properties**
+``` json
+[
+  {
+    "id": 1,
+    "name": "Sunset Apartments",
+    "address": "123 Ocean Boulevard, Santa Monica, CA 90401",
+    "year_built": 2018,
+    "website_url": "https://sunsetapts.example.com",
+    "created_at": "2025-10-20T20:23:39.913Z",
+    "updated_at": "2025-10-20T20:23:39.913Z"
+  },
+  {
+    "id": 2,
+    "name": "Downtown Plaza",
+    "address": "456 Main Street, Austin, TX 78701",
+    "year_built": 2015,
+    "website_url": "https://downtownplaza.example.com",
+    "created_at": "2025-10-20T20:23:39.920Z",
+    "updated_at": "2025-10-20T20:23:39.920Z"
+  },
+...
+]
+```
+
+**http://localhost:3000/properties/8**
+``` json
+{
+  "id": 8,
+  "name": "Heritage Square",
+  "address": "258 Historic Lane, Boston, MA 02108",
+  "year_built": 2014,
+  "website_url": "https://heritagesquare.example.com",
+  "created_at": "2025-10-20T20:23:39.976Z",
+  "updated_at": "2025-10-20T20:23:39.976Z",
+  "units": [
+    {
+      "id": 87,
+      "name": "Unit 1A",
+      "bedroom_count": 2,
+      "bathroom_count": "2.0",
+      "unit_size": 1232,
+      "property_id": 8,
+      "created_at": "2025-10-20T21:35:17.479Z",
+      "updated_at": "2025-10-20T21:35:17.479Z"
+    },
+    {
+      "id": 88,
+      "name": "Unit 2",
+      "bedroom_count": 2,
+      "bathroom_count": "2.0",
+      "unit_size": 938,
+      "property_id": 8,
+      "created_at": "2025-10-20T21:35:17.480Z",
+      "updated_at": "2025-10-20T21:35:17.480Z"
+    },
+...
+}
+```
+
+### Frontend Preview
+
+**Property Listings**
+![Property Listing](assets/property-listings.png)
+
+**Property Detail & Unit Listings**
+![Property Listing](assets/property-detail.png)
+
+
 ## Project Status
 
 ### Backend Tasks
@@ -9,9 +80,9 @@ Take-home project for building a property viewing application with Rails API bac
 - [x] Configure sqlite database
 - [x] Create Property model (name, address, year_built, website_url)
   - [x] Bonus: Added DB seeds for 10 properties.
-- [?] Implement API endpoint: List all properties
+- [x] Implement API endpoint: List all properties
   - Our route at http://localhost:3000/properties is working fine... do we need to add additional API functionality?
-- [?] Implement API endpoint: View single property
+- [x] Implement API endpoint: View single property
   - Our route at http://localhost:3000/properties/10 is working fine... do we need to add additional API functionality?
 - [x] Configure CORS for frontend communication
 
@@ -22,52 +93,61 @@ Take-home project for building a property viewing application with Rails API bac
 - [x] Create properties list view
 - [x] Display property details (name, address, year built, website link)
 - [x] Configure API connection to localhost:3000
-- [ ] Optional: Create detail view for individual properties
+- [x] Optional: Create detail view for individual properties
 
 ### Bonus Tasks (If Time Permits)
 - [x] Backend: Create Units model (unit_name, bedroom_count, bathroom_count, unit_size)
 - [x] Backend: Add relationship between Property and Units
   - [x] Bonus: Added DB seeds for 4-24 units per property.
-- [?] Backend: Update API endpoints to include units
+- [x] Backend: Update API endpoints to include units
     - Can be fetched via http://localhost:3000/properties/8 or http://localhost:3000/properties/8/units
-- [ ] Frontend: Display units associated with properties
+- [x] Frontend: Display units associated with properties
 
 ## Running the Applications
 
 ### Backend (Rails API)
 ```bash
 # Initial setup
-  cd backend
-  bundle install
-  rails db:create
-  rails db:migrate
-  rails db:seed
+cd backend
+bundle install
+rails db:create
+rails db:migrate
+rails db:seed
 
-  # Run the server (on port 3000)
-  bin/dev
+# Run the server (on port 3000)
+bin/dev
 ```
 
 ### Frontend (React + Vite)
 ```bash
 cd frontend
-# Commands will be added after setup
+
+# Initial setup
+npm install
+
+# Run the server (port 5173)
+npm run dev
 ```
 
 ## Notes for Interviewing Team
 
-### Architecture Decisions
+### Backend Choices
 - Using standard Rails scaffolds for controllers returning JSON responses.
   - rails generate scaffold Property name:string address:text year_built:integer website_url:string
   - rails generate scaffold Unit unit_name:string bedroom_count:integer bathroom_count:decimal unit_size:integer property:references
+- I'm able to load JSON responses fine directly from Rails default scaffolding, including full CRUD examples below tested on localhost
+  - Do we need a more robust API design for this project?
 
-### Styling Choices
-- Using default TailwindUI blocks and app layout for simplicity
-- I'm committing directly to main here for speed. Don't judge me too harshly - I typically prefer to work in small isolated PRs with explanations of what's
+### Frontend Choices
+- I'm using default Tailwind UI blocks and app layout for simplicity
+  - I've tweaked some of the default Tailwind styles to taste but there's plenty of room for UI improvement, better link wrapping on cards, etc.
+- I implemented a very raw URL handling to set URLs and accept them if user returns back. Definitely not meant to be a robust implementation or full routing system.
 
-### API Design
-- We're able to load JSON responses fine directly from Rails scaffolding, including full CRUD examples below tested on localhost
-- Do we need a more robust API design for this project?
+### Repo Choices
+- I'm committing directly to main here for speed. Don't judge me too harshly =).
+  - I typically prefer to work in small reviewable PRs whenever possible with good PR notes. I use descriptive commit names but I don't like to include a lot in commit messages since it gets lost in the PR itself.
 
+### API CRUD Testing
 **CREATE**
 ```
 curl -X POST http://localhost:3000/properties -H "Content-Type: application/json" -d '{"property": {"name": "Test Property", "address": "123 Test Street, Test City, TC 12345", "year_built": 2023, "website_url": "https://testproperty.example.com"}}'
