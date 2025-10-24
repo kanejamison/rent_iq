@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_20_202840) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_24_193452) do
   create_table "properties", force: :cascade do |t|
     t.string "name"
     t.text "address"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_202840) do
     t.string "website_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
   end
 
   create_table "units", force: :cascade do |t|
