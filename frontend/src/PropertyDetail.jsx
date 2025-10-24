@@ -51,6 +51,12 @@ export default function PropertyDetail({ propertyId, onBack }) {
         </div>
       </div>
 
+      <h2 className="text-xl/6 font-medium text-gray-800 pb-4 border-b border-gray-100">Property Overview:</h2>
+
+      <div className="text-base/6 font-normal text-gray-700">
+        {property.description}
+      </div>
+
       <h2 className="text-xl/6 font-medium text-gray-800 pb-4 border-b border-gray-100">Unit Overview:</h2>
 
       <div className="">
